@@ -1,10 +1,23 @@
 Course:
-enrolledStudentCount initial number is not 0.
-enroll and drop operations lack border check.
-isCourseFull condition is wrong.
+24: improper initialization, enrolledStudentCount initial number is not 0.
+enrollStudent: enroll operation lacks boundary check about capacity.
+dropStudent: Drop operation lacks zero boundary check.
+isCourseFull: if-condition is wrong.
+getCourseLocation 55: should be this.courseLocation.
+getInstructorName 60: should be this.instructorName.
 
 Department:
-toString: return "result.toString()"->return result.toString().
-getNumberOfMajors: delete -
-getDepartmentChair: “return this.departmentChair"->return this.departmentChair
+toString 115: return "result.toString()"->return result.toString().
+getNumberOfMajors 38: deleted '-'.
+getDepartmentChair 47: “return this.departmentChair"->return this.departmentChair
+dropPersonFromMajor 70: Decrease in the number of students lacks zero boundary check.
+
+RouteController:
+retrieveDepartment 46: should be HttpStatus.NOT_FOUND.
+retrieveDepartment 49: should be HttpStatus.OK.
+handleException 539: HttpStatus.OK -> HttpStatus.EXPECTATION_FAILED.
+retrieveCourse 87: HttpStatus.FORBIDDEN -> HttpStatus.OK.
+getMajorCtFromDept 152: deleted '-'.
+getMajorCtFromDept 155: HttpStatus.FORBIDDEN -> HttpStatus.NOT_FOUND
+findCourseTime 293: "some time" -> requestedCourse.courseTimeSlot
 
