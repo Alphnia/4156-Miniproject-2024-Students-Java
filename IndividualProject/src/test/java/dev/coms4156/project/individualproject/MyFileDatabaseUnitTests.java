@@ -17,18 +17,20 @@ import org.springframework.test.context.ContextConfiguration;
 public class MyFileDatabaseUnitTests {
 
   @BeforeAll
-  public static void setupCourseForTesting() {
-    testCourse = new Course("Griffin Newbold", "417 IAB", "11:40-12:55", 250);
+  public static void setupFileDatabaseForTesting() {
+    testFileDatabase = new MyFileDatabase(0, "./data.txt");
+    testFileDatabase2 = new MyFileDatabase(1, "./data.txt");
   }
 
 
   @Test
   public void toStringTest() {
-    String expectedResult = "\nInstructor: Griffin Newbold; Location: 417 IAB; Time: 11:40-12:55";
-    assertEquals(expectedResult, testCourse.toString());
+    testFileDatabase.toString();
   }
 
   /** The test course instance used for testing. */
-  public static Course testCourse;
+  public static MyFileDatabase testFileDatabase;
+
+  public static MyFileDatabase testFileDatabase2;
 }
 
