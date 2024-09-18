@@ -1,7 +1,6 @@
 package dev.coms4156.project.individualproject;
 
 import java.util.HashMap;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -95,42 +94,6 @@ public class RouteController {
     }
   }
 
-  /**
-   * Displays the details of the requested courses to the user or displays the proper error
-   * message in response to the request.
-   *
-   * @param courseCode A {@code int} representing the course the user wishes
-   *                   to retrieve.
-   *
-   * @return           A {@code ResponseEntity} object containing either the details of the
-   *                   courses and an HTTP 200 response or, an appropriate message indicating the
-   *                   proper response.
-   */
-  @GetMapping(value = "/retrieveCourses", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> retrieveCourses(
-      @RequestParam(value = "courseCode") int courseCode) {
-    try {
-      String result="";
-      HashMap<String, Department> departmentMapping;
-      departmentMapping = IndividualProjectApplication.myFileDatabase.getDepartmentMapping();
-      for (Department dept : departmentMapping.values()) {
-        HashMap<String, Course> coursesMapping;
-        coursesMapping = dept.getCourseSelection();
-        if (coursesMapping.containsKey(Integer.toString(courseCode))) {
-          result+=coursesMapping.get(Integer.toString(courseCode)).toString();
-          result+="\n";
-        }
-      }
-      if (result != "") {
-        return new ResponseEntity<>(result, HttpStatus.OK);
-      }
-      else {
-        return new ResponseEntity<>("Courses Not Found", HttpStatus.NOT_FOUND);
-      }
-    } catch (Exception e) {
-      return handleException(e);
-    }
-  }
   /**
    * Displays whether the course has at minimum reached its enrollmentCapacity.
    *
