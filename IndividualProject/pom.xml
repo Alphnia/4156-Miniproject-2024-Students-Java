@@ -44,7 +44,7 @@
 					<includeTestSourceDirectory>true</includeTestSourceDirectory>
 					<consoleOutput>true</consoleOutput>
 					<failsOnError>true</failsOnError>
-					<linkXRef>false</linkXRef>
+					<linkXRef>true</linkXRef>
 				</configuration>
 				<executions>
 					<execution>
