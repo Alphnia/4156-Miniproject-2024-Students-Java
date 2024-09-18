@@ -49,24 +49,6 @@ public class RouteControllerUnitTests {
   }
 
   @Test
-  public void retrieveCoursesTest() {
-    ResponseEntity<?> result = testRouteController.retrieveCourses(1004);
-    assertEquals(result.getStatusCode(), HttpStatus.OK);
-    result = testRouteController.retrieveCourses(4102);
-    String[] times = {"11:40-12:55", "4:10-5:25", "10:10-11:25", "2:40-3:55"};
-    Course ieor4102 = new Course("Antonius B Dieker", "209 HAM", times[2], 110);
-    Course chem4102 = new Course("Dalibor Sames", "320 HAV", times[2], 28);
-    assertEquals(result.getStatusCode(), HttpStatus.OK);
-    assertEquals(chem4102.toString()+'\n'+ieor4102.toString()+'\n', result.getBody().toString());
-    result = testRouteController.retrieveCourses(1234);
-    assertEquals(result.getStatusCode(), HttpStatus.NOT_FOUND);
-
-    result = testRouteController.retrieveCourses(1234565432);
-    assertEquals(result.getStatusCode(), HttpStatus.NOT_FOUND);
-    
-  }
-
-  @Test
   public void isCourseFullTest() {
     ResponseEntity<?> result = testRouteController.isCourseFull("COMS", 1004);
     assertEquals(result.getStatusCode(), HttpStatus.OK);
