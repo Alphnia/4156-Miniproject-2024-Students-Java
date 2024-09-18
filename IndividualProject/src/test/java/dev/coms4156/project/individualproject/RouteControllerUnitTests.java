@@ -150,6 +150,16 @@ public class RouteControllerUnitTests {
   }
 
   @Test
+  public void enrollStudentTest() {
+    ResponseEntity<?> result = testRouteController.enrollStudent("COMS", 1004);
+    assertEquals(result.getStatusCode(), HttpStatus.OK);
+    result = testRouteController.enrollStudent("ABCD", 1004);
+    assertEquals(result.getStatusCode(), HttpStatus.NOT_FOUND);
+    result = testRouteController.enrollStudent("COMS", 1234567);
+    assertEquals(result.getStatusCode(), HttpStatus.NOT_FOUND);
+  }
+
+  @Test
   public void setEnrollmentCountTest() {
     ResponseEntity<?> result = testRouteController.setEnrollmentCount("COMS", 1004, 401);
     assertEquals(result.getStatusCode(), HttpStatus.OK);
