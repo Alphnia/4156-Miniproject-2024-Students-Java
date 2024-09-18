@@ -396,47 +396,6 @@ public class RouteController {
   }
 
   /**
-   * Attempts to enroll a student into the specified course.
-   *
-   * @param deptCode       A {@code String} representing the department.
-   *
-   * @param courseCode     A {@code int} representing the course within the department.
-   *
-   * @return               A {@code ResponseEntity} object containing an HTTP 200
-   *                       response with an appropriate message or the proper status
-   *                       code in tune with what has happened.
-   */
-  @PatchMapping(value = "/enrollStudentInCourse", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> enrollStudent(
-      @RequestParam(value = "deptCode") String deptCode, 
-      @RequestParam(value = "courseCode") int courseCode) {
-    try {
-      boolean doesCourseExists;
-      doesCourseExists = retrieveCourse(deptCode, courseCode).getStatusCode() == HttpStatus.OK;
-
-      if (doesCourseExists) {
-        HashMap<String, Department> departmentMapping;
-        departmentMapping = IndividualProjectApplication.myFileDatabase.getDepartmentMapping();
-        HashMap<String, Course> coursesMapping;
-        coursesMapping = departmentMapping.get(deptCode).getCourseSelection();
-
-        Course requestedCourse = coursesMapping.get(Integer.toString(courseCode));
-        boolean isStudentEnrolled = requestedCourse.enrollStudent();
-
-        if (isStudentEnrolled) {
-          return new ResponseEntity<>("Student has been enrolled.", HttpStatus.OK);
-        } else {
-          return new ResponseEntity<>("Student has not been enrolled.", HttpStatus.BAD_REQUEST);
-        }
-      } else {
-        return new ResponseEntity<>("Course Not Found", HttpStatus.NOT_FOUND);
-      }
-    } catch (Exception e) {
-      return handleException(e);
-    }
-  }
-
-  /**
    * Attempts to drop a student from the specified course.
    *
    * @param deptCode       A {@code String} representing the department.
@@ -478,17 +437,7 @@ public class RouteController {
   }
 
   /**
-    * Attempts to set an enrollment count for the specified course.
-    *
-    * @param deptCode       A {@code String} representing the department.
-    *
-    * @param courseCode     A {@code int} representing the course within the department.
-    *
-    * @param count          A {@code int} representing the enrollment count to be changed.
-    *
-    * @return               A {@code ResponseEntity} object containing an HTTP 200
-    *                       response with an appropriate message or the proper status
-    *                       code in tune with what has happened.
+   * This function map patch to ... 
    */
   @PatchMapping(value = "/setEnrollmentCount", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> setEnrollmentCount(
